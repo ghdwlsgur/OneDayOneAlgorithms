@@ -70,5 +70,6 @@ describe('LinkedList', () => {
 
     expect(linkedList.head.toString()).toBe('2');
     expect(linkedList.tail.toString()).toBe('4');
+    //test
   });
 });
