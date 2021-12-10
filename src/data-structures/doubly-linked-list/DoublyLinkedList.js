@@ -29,5 +29,24 @@ export default class DoublyLinkedList {
 
   append(value) {
     const newNode = new DoublyLinkedListNode(value);
+
+    // If there is no head yet let's make new node a head.
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+
+      return this;
+    }
+
+    // Attach new node to the end of linked list.
+    this.tail.next = newNode;
+
+    // Attach current tail to the new node's previous reference.
+    newNode.previous = this.tail;
+
+    // Set new node to be tail of linked list.
+    this.tail = newNode;
+
+    return this;
   }
 }
