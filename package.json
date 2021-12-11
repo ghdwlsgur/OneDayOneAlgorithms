@@ -7,7 +7,9 @@
   "scripts": {
     "lint": "eslint ./src/*",
     "start": "nodemon --exec babel-node src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "testw": "jest --watch",
+    "testc": "jest --coverage"
   },
   "dependencies": {
     "@types/jest": "^27.0.3",
