@@ -207,7 +207,6 @@ export default class DoublyLinkedList {
     let currNode = this.head;
     let prevNode = null;
     let nextNode = null;
-
     while (currNode) {
       nextNode = currNode.next;
       prevNode = currNode.previous;
