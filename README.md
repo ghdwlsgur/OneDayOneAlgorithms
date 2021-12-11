@@ -1,5 +1,27 @@
 https://velog.io/@ragnarok_code/JavaScript-자바스크립트-테스팅하기
 
+### Jest
+
+#### 1. add scrips (package.json)
+
+```javscript
+"scripts": {
+  "test": "jest"
+}
+```
+
+#### 2.. 전체 파일 테스팅
+
+```javascript
+yarn test
+```
+
+#### 3.. 특정 파일 테스팅
+
+```javascript
+yarn test -- fileName.js
+```
+
 ### Stack(Stack)의 사용 사례
 
 재귀 알고리즘을 사용하는 경우 스택이 유용하다.

@@ -16,8 +16,15 @@ export default class DoublyLinkedList {
     // Therefore, make its previous reference to be new node (new head).
     // Then mark the new node as head.
     if (this.head) {
+      // 만약 head가 존재한다면
+      //======================================================
+      //     ----------------------         ------------
+      //    | this.head.previous  | <====> | this.head |
+      //    ----------------------         ------------
+      //======================================================
       this.head.previous = newNode;
     }
+    // head가 존재하지 않으면
     this.head = newNode;
 
     // If there is no tail yet let's make new node a tail.
@@ -38,6 +45,11 @@ export default class DoublyLinkedList {
       return this;
     }
 
+    //======================================================
+    //     ----------------         -----------------
+    //    |   this.tail   | <====> | this.tail.next |
+    //    ----------------         -----------------
+    //======================================================
     // Attach new node to the end of linked list.
     this.tail.next = newNode;
 
@@ -118,30 +130,37 @@ export default class DoublyLinkedList {
     return null;
   }
 
+  // 꼬리 자르기
   deleteTail() {
     if (!this.tail) {
       // No tail to delete.
       return null;
     }
 
+    /*
+      노드가 1개일 경우 this.head와 this.tail이 같은 value 값
+      하지만 노드가 여러개일 경우 ex) 1, 2, 3
+      여기서 this.head는 1이고, this.tail은 3이다.
+    */
     if (this.head === this.tail) {
       // There is only one node in linked list.
       const deletedTail = this.tail;
       this.head = null;
       this.tail = null;
 
-      return deletedTail;
+      return deletedTail; // 삭제 후 this.tail값 반환
     }
 
     // If there are many nodes in linked list ...
     const deletedTail = this.tail;
 
     this.tail = this.tail.previous;
-    this.tail.next = null;
+    this.tail.next = null; // 꼬리 자르기 이므로 다음 노드는 당연히 null값
 
     return deletedTail;
   }
 
+  // 머리 자르기
   deleteHead() {
     if (!this.head) {
       return null;
@@ -194,10 +213,10 @@ export default class DoublyLinkedList {
       prevNode = currNode.previous;
 
       // Change next nodes of the current node so it would link to previous node.
-      currentNode.next = prevNode;
-      currentNode.previous = nextNode;
+      currNode.next = prevNode;
+      currNode.previous = nextNode;
 
-      // Move prebNode and currnode nodes one sttp forward.
+      // Move prevNode and currnode nodes one step forward.
       prevNode = currNode;
       currNode = nextNode;
     }
