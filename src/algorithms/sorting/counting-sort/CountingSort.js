@@ -19,65 +19,127 @@ import Sort from '../Sort';
   모든 데이터의 크기 범위를 메모리 상에 표현할 수만 있다면 O(N)이라는 압도적인 속도로 정렬을 수행
 */
 
+// export default class CountingSort extends Sort {
+//   /**
+//    * @param {number[]} originalArray
+//    * @param {number} [smallestElement]
+//    * @param {number} [biggestElement]
+//    */
+//   sort(
+//     originalArray,
+//     smallestElement = undefined,
+//     // eslint-disable-next-line prettier/prettier
+//     biggestElement = undefined
+//   ) {
+//     // Init biggest and smallest elements in array in order to build number bucket array later.
+//     let detectedSmallestElement = smallestElement || 0;
+//     let detectedBiggestElement = biggestElement || 0;
+
+//     if (smallestElement === undefined || biggestElement === undefined) {
+//       originalArray.forEach(element => {
+//         // Visit element.
+//         this.callbacks.visitingCallback(element);
+
+//         // Detect biggest element
+//         // element > detectedBiggestElement
+//         if (this.comparator.greaterThan(element, detectedBiggestElement)) {
+//           detectedBiggestElement = element;
+//         }
+
+//         // Detect smallest element.
+//         // element < detectedSmallestElement
+//         if (this.comparator.lessThan(element, detectedSmallestElement)) {
+//           detectedSmallestElement = element;
+//         }
+//       });
+//     }
+
+//     // Init buckets array.
+//     // This array will hold frequency of each number from originalArray.
+
+//     // eslint-disable-next-line prettier/prettier
+//     const buckets = Array(detectedBiggestElement - detectedSmallestElement + 1).fill(0);
+
+//     originalArray.forEach(element => {
+//       // Visit element.
+//       this.callbacks.visitingCallback(element);
+//       buckets[element - detectedSmallestElement] += 1;
+//     });
+
+//     // 누적합
+//     // Add previous frequencies to the current one for each number in bucket
+//     // to detect how many numbers less then current one should be standing to
+//     // the left of current one.
+//     for (let bucketIndex = 1; bucketIndex < buckets.length; bucketIndex += 1) {
+//       buckets[bucketIndex] += buckets[bucketIndex - 1];
+//     }
+
+//     // Now let's shift frequencies to the right so that they show correct numbers.
+//     // I.e if we won't shift right than the value of buckets[5] will display how many
+//     // elements less than 5 should be placed to the left of 5 in sorted array
+//     // INCLUDING 5th. After shifting though this number will not include 5th anymore.
+//     buckets.pop();
+//     buckets.unshift(0);
+
+//     const sortedArray = Array(originalArray.length).fill(null);
+//     for (
+//       let elementIndex = 0;
+//       elementIndex < originalArray.length;
+//       elementIndex += 1
+//     ) {
+//       const element = originalArray[elementIndex];
+
+//       // Visit element.
+//       this.callbacks.visitingCallback(element);
+
+//       // Get correct position of this element in sorted array.
+//       const elementSortedPosition = buckets[element - detectedSmallestElement];
+
+//       // Put element into correct position in sorted array.
+//       sortedArray[elementSortedPosition] = element;
+
+//       // Increase position of current element in the bucket for future correct placements.
+//       buckets[element - detectedSmallestElement] += 1;
+//     }
+
+//     // Return sorted array.
+//     return sortedArray;
+//   }
+// }
+
 export default class CountingSort extends Sort {
-  /**
-   * @param {number[]} originalArray
-   * @param {number} [smallestElement]
-   * @param {number} [biggestElement]
-   */
   sort(
     originalArray,
     smallestElement = undefined,
     // eslint-disable-next-line prettier/prettier
     biggestElement = undefined
   ) {
-    // Init biggest and smallest elements in array in order to build number bucket array later.
-    let detectedSmallestElement = smallestElement || 0;
-    let detectedBiggestElement = biggestElement || 0;
-
     if (smallestElement === undefined || biggestElement === undefined) {
       originalArray.forEach(element => {
-        // Visit element.
         this.callbacks.visitingCallback(element);
 
-        // Detect biggest element
-        // element > detectedBiggestElement
         if (this.comparator.greaterThan(element, detectedBiggestElement)) {
           detectedBiggestElement = element;
         }
 
-        // Detect smallest element.
-        // element < detectedSmallestElement
         if (this.comparator.lessThan(element, detectedSmallestElement)) {
           detectedSmallestElement = element;
         }
       });
     }
 
-    // Init buckets array.
-    // This array will hold frequency of each number from originalArray.
-
     // eslint-disable-next-line prettier/prettier
     const buckets = Array(detectedBiggestElement - detectedSmallestElement + 1).fill(0);
 
     originalArray.forEach(element => {
-      // Visit element.
       this.callbacks.visitingCallback(element);
+
       buckets[element - detectedSmallestElement] += 1;
     });
 
-    // 누적합
-    // Add previous frequencies to the current one for each number in bucket
-    // to detect how many numbers less then current one should be standing to
-    // the left of current one.
     for (let bucketIndex = 1; bucketIndex < buckets.length; bucketIndex += 1) {
       buckets[bucketIndex] += buckets[bucketIndex - 1];
     }
-
-    // Now let's shift frequencies to the right so that they show correct numbers.
-    // I.e if we won't shift right than the value of buckets[5] will display how many
-    // elements less than 5 should be placed to the left of 5 in sorted array
-    // INCLUDING 5th. After shifting though this number will not include 5th anymore.
     buckets.pop();
     buckets.unshift(0);
 
@@ -88,21 +150,11 @@ export default class CountingSort extends Sort {
       elementIndex += 1
     ) {
       const element = originalArray[elementIndex];
-
-      // Visit element.
       this.callbacks.visitingCallback(element);
-
-      // Get correct position of this element in sorted array.
       const elementSortedPosition = buckets[element - detectedSmallestElement];
-
-      // Put element into correct position in sorted array.
       sortedArray[elementSortedPosition] = element;
-
-      // Increase position of current element in the bucket for future correct placements.
       buckets[element - detectedSmallestElement] += 1;
     }
-
-    // Return sorted array.
     return sortedArray;
   }
 }
