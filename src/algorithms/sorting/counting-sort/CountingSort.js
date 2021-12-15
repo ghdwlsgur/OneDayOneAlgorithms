@@ -114,6 +114,9 @@ export default class CountingSort extends Sort {
     // eslint-disable-next-line prettier/prettier
     biggestElement = undefined
   ) {
+    let detectedSmallestElement = smallestElement || 0;
+    let detectedBiggestElement = biggestElement || 0;
+
     if (smallestElement === undefined || biggestElement === undefined) {
       originalArray.forEach(element => {
         this.callbacks.visitingCallback(element);
