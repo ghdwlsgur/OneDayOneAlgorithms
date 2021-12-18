@@ -195,8 +195,9 @@ describe('DoublyLinkedList', () => {
     expect(node).toBeDefined();
     expect(node.value.value).toBe(2);
     expect(node.value.key).toBe('test2');
-    // eslint-disable-next-line prettier/prettier
-    expect(linkedList.find({ callback: value => value.key === 'test5' })).toBeNull();
+    expect(
+      linkedList.find({ callback: value => value.key === 'test5' }),
+    ).toBeNull();
   });
 
   it('should find node by means of custom compare function', () => {

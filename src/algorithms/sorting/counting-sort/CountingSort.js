@@ -108,12 +108,7 @@ import Sort from '../Sort';
 // }
 
 export default class CountingSort extends Sort {
-  sort(
-    originalArray,
-    smallestElement = undefined,
-    // eslint-disable-next-line prettier/prettier
-    biggestElement = undefined
-  ) {
+  sort(originalArray, smallestElement = undefined, biggestElement = undefined) {
     let detectedSmallestElement = smallestElement || 0;
     let detectedBiggestElement = biggestElement || 0;
 
@@ -131,8 +126,9 @@ export default class CountingSort extends Sort {
       });
     }
 
-    // eslint-disable-next-line prettier/prettier
-    const buckets = Array(detectedBiggestElement - detectedSmallestElement + 1).fill(0);
+    const buckets = Array(
+      detectedBiggestElement - detectedSmallestElement + 1,
+    ).fill(0);
 
     originalArray.forEach(element => {
       this.callbacks.visitingCallback(element);

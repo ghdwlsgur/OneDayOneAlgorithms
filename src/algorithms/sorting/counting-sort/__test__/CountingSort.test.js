@@ -31,10 +31,12 @@ describe('CountingSort', () => {
     // Detect smallest number in array in prior
     const smallestElement = Math.min(...notSortedArr);
 
-    // eslint-disable-next-line prettier/prettier
-    const sortedArray = sorter.sort(notSortedArr, smallestElement, biggestElement);
-    // eslint-disable-next-line prettier/prettier
-    
+    const sortedArray = sorter.sort(
+      notSortedArr,
+      smallestElement,
+      biggestElement,
+    );
+
     expect(sortedArray).toEqual(sortedArr);
     expect(visitingCallback).toHaveBeenCalledTimes(40);
   });
@@ -43,8 +45,7 @@ describe('CountingSort', () => {
     SortTester.testAlgorithmsTimeComplexity(
       CountingSort,
       equalArr,
-      // eslint-disable-next-line prettier/prettier
-      EQUAL_ARRAY_VISITING_COUNT
+      EQUAL_ARRAY_VISITING_COUNT,
     );
   });
 
@@ -52,8 +53,7 @@ describe('CountingSort', () => {
     SortTester.testAlgorithmsTimeComplexity(
       CountingSort,
       sortedArr,
-      // eslint-disable-next-line prettier/prettier
-      SORTED_ARRAY_VISITING_COUNT
+      SORTED_ARRAY_VISITING_COUNT,
     );
   });
 
@@ -61,8 +61,7 @@ describe('CountingSort', () => {
     SortTester.testAlgorithmsTimeComplexity(
       CountingSort,
       notSortedArr,
-      // eslint-disable-next-line prettier/prettier
-      NOT_SORTED_ARRAY_VISITING_COUNT
+      NOT_SORTED_ARRAY_VISITING_COUNT,
     );
   });
 
@@ -70,8 +69,7 @@ describe('CountingSort', () => {
     SortTester.testAlgorithmsTimeComplexity(
       CountingSort,
       reverseArr,
-      // eslint-disable-next-line prettier/prettier
-      REVERSE_SORTED_ARRAY_VISITING_COUNT
+      REVERSE_SORTED_ARRAY_VISITING_COUNT,
     );
   });
 });

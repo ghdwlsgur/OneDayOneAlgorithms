@@ -82,8 +82,7 @@ export class SortTester {
   static testAlgorithmsTimeComplexity(
     SortingClass,
     arrayToBeSorted,
-    // eslint-disable-next-line prettier/prettier
-    numberOfVisits    
+    numberOfVisits,
   ) {
     const visitingCallback = jest.fn();
     const callbacks = { visitingCallback };
