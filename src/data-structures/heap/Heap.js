@@ -39,6 +39,8 @@ export default class Heap {
    * @return {number}
    */
   getParentIndex(childIndex) {
+    console.log(`childIndex: ${childIndex}`);
+    console.log(`getParentIndex: ${Math.floor((childIndex - 1) / 2)}`);
     return Math.floor((childIndex - 1) / 2);
   }
 
@@ -238,6 +240,16 @@ export default class Heap {
         this.heapContainer[currentIndex],
       )
     ) {
+      console.log('---------------------------------------------');
+      console.log(`currentIndex: ${currentIndex}`);
+      console.log(
+        `this.hasParent(currentIndex): ${this.hasParent(currentIndex)}`,
+      );
+      console.log(`this.parent(currentIndex): ${this.parent(currentIndex)}`);
+      console.log(
+        `this.heapContainer[currentIndex]: ${this.heapContainer[currentIndex]}`,
+      );
+      console.log('---------------------------------------------');
       this.swap(currentIndex, this.getParentIndex(currentIndex));
       currentIndex = this.getParentIndex(currentIndex);
     }
