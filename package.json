@@ -1,9 +1,6 @@
 {
-  "name": "algorithms",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "author": "hongjinhyeok",
+  "name": "one-day-one-algorithms",
+  "packageManager": "yarn@3.1.1",
   "scripts": {
     "lint": "eslint ./src/*",
     "start": "nodemon --exec babel-node src/index.js",
@@ -12,15 +9,15 @@
     "testc": "jest --coverage"
   },
   "dependencies": {
-    "@types/jest": "^27.0.3",
-    "jest": "^27.4.3",
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.5",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/node": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
-    "eslint": "^8.4.0",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1"

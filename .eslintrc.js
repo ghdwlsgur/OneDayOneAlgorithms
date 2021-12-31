@@ -1,22 +1,31 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    commonjs: true,
-    node: true,
-    es6: true,
-  },
-  plugins: ['prettier'],
-  extends: ['prettier', 'plugin:prettier/recommended'],
-  parserOptions: {
-    ecmaVersion: 8,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: false,
+    'env': {
+        'browser': true,
+        'es2021': true,
+        'node': true
     },
-  },
-  ignorePatterns: ['node_modules/'],
-  rules: {
-    'prettier/prettier': 'error',
-  },
+    'extends': 'eslint:recommended',
+    'parserOptions': {
+        'ecmaVersion': 13,
+        'sourceType': 'module'
+    },
+    'rules': {
+        'indent': [
+            'error',
+            4
+        ],
+        'linebreak-style': [
+            'error',
+            'unix'
+        ],
+        'quotes': [
+            'error',
+            'single'
+        ],
+        'semi': [
+            'error',
+            'always'
+        ]
+    }
 };
+
