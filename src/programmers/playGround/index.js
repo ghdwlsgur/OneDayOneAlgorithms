@@ -25,15 +25,53 @@
 // const signs = [true, false, true];
 // solution(absolutes, signs);
 
-function solution(numbers) {
-  const lessThanNineTotal = 45;
-  let total = 0;
-  numbers.map(number => {
-    // let total = 0;
-    total += number;
-  });
-  return lessThanNineTotal - total;
-}
+// function solution(numbers) {
+//   const lessThanNineTotal = 45;
+//   let total = 0;
+//   numbers.map(number => {
+//     // let total = 0;
+//     total += number;
+//   });
+//   return lessThanNineTotal - total;
+// }
 
-solution([1, 2, 3, 4, 6, 7, 8, 0]);
-// solution([5, 8, 4, 0, 6, 7, 9]);
+// solution([1, 2, 3, 4, 6, 7, 8, 0]);
+// // solution([5, 8, 4, 0, 6, 7, 9]);
+
+// function solution(participant, completion) {
+//   const startList = {};
+//   for (let i = 0; i < participant.length; i++) {
+//     startList[participant[i]] = ++startList[participant[i]] || 1;
+//   }
+
+//   const endList = {};
+//   for (let i = 0; i < completion.length; i++) {
+//     endList[completion[i]] = ++endList[completion[i]] || 1;
+//   }
+
+//   for (let name in startList) {
+//     endList[name] ? startList[name]-- : '';
+//   }
+
+//   return Object.keys(startList)
+//     .filter(name => startList[name] > 0)
+//     .toString();
+// }
+
+function solution(participant, completion) {
+  const startList = [];
+  startList.push(...participant.sort());
+  const endList = [];
+  endList.push(...completion.sort());
+
+  endList.map((name, i) => {
+    if (startList.indexOf(name)) {
+      participant.splice(i, 1);
+    }
+  });
+
+  console.log(participant);
+}
+const participant = ['mislav', 'stanko', 'mislav', 'ana'];
+const completion = ['stanko', 'ana', 'mislav'];
+console.log(solution(participant, completion));
