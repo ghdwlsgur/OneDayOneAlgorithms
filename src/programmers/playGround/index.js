@@ -29,14 +29,14 @@
 //   const lessThanNineTotal = 45;
 //   let total = 0;
 //   numbers.map(number => {
-//     // let total = 0;
+// let total = 0;
 //     total += number;
 //   });
 //   return lessThanNineTotal - total;
 // }
 
 // solution([1, 2, 3, 4, 6, 7, 8, 0]);
-// // solution([5, 8, 4, 0, 6, 7, 9]);
+// solution([5, 8, 4, 0, 6, 7, 9]);
 
 // function solution(participant, completion) {
 //   const startList = {};
@@ -58,20 +58,46 @@
 //     .toString();
 // }
 
+// function solution(participant, completion) {
+//   const startListLastIndex = participant.length - 1;
+//   const endListLastIndex = completion.length - 1;
+//   const startList = { ...participant.sort() };
+//   const endList = { ...completion.sort() };
+
+//   const getStraggler = {
+//     true: startList[startListLastIndex - 1],
+//     false: startList[startListLastIndex],
+//   };
+
+//   return (
+//     getStraggler[startList[startListLastIndex] === endList[endListLastIndex]] ||
+//     '해당없음'
+//   );
+// }
+
 function solution(participant, completion) {
-  const startList = [];
-  startList.push(...participant.sort());
-  const endList = [];
-  endList.push(...completion.sort());
+  const result = {};
+  participant.filter(person => (result[person] = ++result[person] || 1));
+  completion.filter(person => --result[person]);
 
-  endList.map((name, i) => {
-    if (startList.indexOf(name)) {
-      participant.splice(i, 1);
-    }
-  });
-
-  console.log(participant);
+  return Object.keys(result).filter(name => result[name] > 0)[0];
 }
-const participant = ['mislav', 'stanko', 'mislav', 'ana'];
-const completion = ['stanko', 'ana', 'mislav'];
+const participant = ['leo', 'kiki', 'eden'];
+const completion = ['eden', 'kiki'];
 console.log(solution(participant, completion));
+
+// const solution = (participant, completion) => {
+//   const startList = [...participant.sort()];
+//   const endList = [...completion.sort()];
+
+//   const getStraggler = {
+//     true: startList[startList.length - 2],
+//     false: startList[startList.length - 1],
+//   };
+
+//   return (
+//     getStraggler[
+//       startList[startList.length - 1] === endList[startList.length - 2]
+//     ] || '해당없음'
+//   );
+// };
