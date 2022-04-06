@@ -75,16 +75,16 @@
 //   );
 // }
 
-function solution(participant, completion) {
-  const result = {};
-  participant.filter(person => (result[person] = ++result[person] || 1));
-  completion.filter(person => --result[person]);
+// function solution(participant, completion) {
+//   const result = {};
+//   participant.filter(person => (result[person] = ++result[person] || 1));
+//   completion.filter(person => --result[person]);
 
-  return Object.keys(result).filter(name => result[name] > 0)[0];
-}
-const participant = ['leo', 'kiki', 'eden'];
-const completion = ['eden', 'kiki'];
-console.log(solution(participant, completion));
+//   return Object.keys(result).filter(name => result[name] > 0)[0];
+// }
+// const participant = ['leo', 'kiki', 'eden'];
+// const completion = ['eden', 'kiki'];
+// console.log(solution(participant, completion));
 
 // const solution = (participant, completion) => {
 //   const startList = [...participant.sort()];
@@ -101,3 +101,12 @@ console.log(solution(participant, completion));
 //     ] || '해당없음'
 //   );
 // };
+
+// function solution(nums) {
+//   return (
+//     (nums.length / 2 < new Set(nums).size && nums.length / 2) ||
+//     new Set(nums).size
+//   );
+// }
+
+// console.log(solution([3, 1, 2, 3]));
