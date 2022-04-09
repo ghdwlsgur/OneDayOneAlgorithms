@@ -111,23 +111,102 @@
 
 // console.log(solution([3, 1, 2, 3]));
 
-const solution = string => {
-  const charArray = string.split('');
-  if (charArray.length <= 1) return 0;
+// const solution = string => {
+//   const charArray = string.split('');
+//   if (charArray.length <= 1) return 0;
 
-  const deletePair = () => {
-    const startArray = [...charArray];
-    for (let i = 0; i < charArray.length; i++) {
-      if (charArray[i] === charArray[i + 1]) charArray.splice(i, 2);
+//   const deletePair = () => {
+//     const startArray = [...charArray];
+//     for (let i = 0; i < charArray.length; i++) {
+//       if (charArray[i] === charArray[i + 1]) charArray.splice(i, 2);
+//     }
+
+//     if (startArray.length === charArray.length) return;
+//     else if (startArray.length !== charArray.length) deletePair();
+//   };
+
+//   deletePair();
+
+//   return charArray.length > 0 ? 0 : 1;
+// };
+
+// console.log(solution('aacsbbddeeggffggff'));
+
+// const solution = string => {
+//   const wordList = string.split('');
+//   const jadenCase = [];
+//   let count = 1;
+//   for (let i = 0; i < wordList.length; i++) {
+//     if (wordList[i] == ' ') count = 0;
+//     if (count === 1) jadenCase.push(wordList[i].toUpperCase());
+//     else {
+//       jadenCase.push(wordList[i].toLowerCase());
+//     }
+
+//     count++;
+//   }
+
+//   return jadenCase.join('');
+// };
+
+// solution('people unFollowed me');
+
+const solution = (id_list, report, k) => {
+  const reportObj = {};
+  const reportedObj = {};
+
+  report.filter(user => {
+    const reportedUser = user.split(' ')[1];
+    reportedObj[reportedUser] = ++reportedObj[reportedUser] || 1;
+  });
+
+  if (Object.entries(reportedObj).length === 1) {
+    const invalidResult = [];
+    for (let i = 0; i < id_list.length; i++) {
+      invalidResult[i] = 0;
     }
+    return invalidResult;
+  }
 
-    if (startArray.length === charArray.length) return;
-    else if (startArray.length !== charArray.length) deletePair();
-  };
+  Object.keys(reportedObj).map(user => {
+    console.log(user);
+  });
 
-  deletePair();
+  for (let i = 0; i < id_list.length; i++) {
+    reportObj[id_list[i]] = [];
+  }
 
-  return charArray.length > 0 ? 0 : 1;
+  report.map(user => {
+    let reportUser = user.split(' ')[0];
+    let reportedUser = user.split(' ')[1];
+    reportObj[reportUser].push(reportedUser);
+  });
+
+  const result = [];
+  Object.values(reportObj).forEach(userList => {
+    result.push(userList);
+  });
+
+  // console.log(result.split(','))
+  Object.keys(reportedObj).forEach((user, i) => {
+    console.log(user);
+    console.log(reportedObj[user]);
+    console.log(result[i]);
+  });
+
+  result.map((user, i) => {
+    console.log(user);
+  });
+
+  console.log(result);
+  console.log(reportedObj);
+
+  console.log(reportObj);
+  console.log(reportObj);
 };
 
-console.log(solution('aacsbbddeeggffggff'));
+solution(
+  ['muzi', 'frodo', 'apeach', 'neo'],
+  ['muzi frodo', 'apeach frodo', 'frodo neo', 'muzi neo', 'apeach muzi'],
+  2,
+);
