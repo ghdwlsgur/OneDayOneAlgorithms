@@ -1,5 +1,6 @@
-const solution = arr => {
-  return arr.filter((num, i) => num !== arr[i + 1]);
+const solution = string => {
+  if (string.length === 4 || string.length === 6) return !isNaN(string);
+  return false;
 };
 
-console.log(solution([1, 1, 3, 3, 0, 1, 1]));
+console.log(solution('123,123'));
