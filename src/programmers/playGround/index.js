@@ -1,6 +1,10 @@
-const solution = string => {
-  if (string.length === 4 || string.length === 6) return !isNaN(string);
-  return false;
+const solution = (skill, skill_trees) => {
+  const test = skill.split('');
+  const bucket = {};
+  skill_trees.map(alpha => {
+    bucket[alpha] = ++bucket[test[0]] || 1;
+  });
+  console.log(test);
 };
 
-console.log(solution('123,123'));
+solution('CBD', ['BACDE', 'CBADF', 'AECB', 'BDA']);
