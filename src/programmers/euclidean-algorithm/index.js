@@ -11,8 +11,11 @@ const gcd = (a, b) => {
   return a;
 };
 
+console.log(`test:${gcd(1, 12)}`);
+
 // 최소공배수
 const lcm = (a, b) => {
+  console.log(a, b);
   return (a * b) / gcd(a, b);
 };
 
@@ -26,5 +29,5 @@ const solution = arr => {
 };
 
 const test = [];
-test.push(1, 2, 3);
+test.push(1, 2, 3, 4);
 console.log(solution(test));

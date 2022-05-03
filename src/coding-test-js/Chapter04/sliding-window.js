@@ -8,11 +8,13 @@ function maxSubarraySum(arr, num) {
     maxSum += arr[i];
   }
   tempSum = maxSum;
+  console.log(`temp:${tempSum}`);
   for (let i = num; i < arr.length; i++) {
     tempSum = tempSum - arr[i - num] + arr[i];
+    console.log(tempSum);
     maxSum = Math.max(maxSum, tempSum);
   }
   return maxSum;
 }
 
-maxSubarraySum([1, 2, 3, 4], 2);
+console.log(maxSubarraySum([1, 2, 3, 4], 3));

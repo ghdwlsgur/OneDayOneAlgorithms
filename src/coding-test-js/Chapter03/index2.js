@@ -17,12 +17,7 @@ function validAnagram(first, second) {
 
   return true;
 }
-
-const date1 = new Date().getTime();
-console.log(validAnagram('teat', 'ttse'));
-const date2 = new Date().getTime();
-
-console.log(date2 - date1);
+console.log(validAnagram('22', 'test'));
 
 /**
  * ToDo: go practice !
